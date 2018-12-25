@@ -26,7 +26,6 @@ public class Tester extends JPanel {
 	ArrayList<Pipe> pipes = new ArrayList<>();
 	private BufferedImage image = null;
 	int score = 0;
-	int count = 0;
 
 	public Tester() throws InterruptedException{
 		window.setBounds(0, 0, 1920, 1080);
@@ -52,24 +51,29 @@ public class Tester extends JPanel {
 				if (bird.update() == true) {
 					repaint();
 					tmr.stop();
-					JOptionPane.showMessageDialog(window, "Final Score: " + score);
+					JOptionPane.showOptionDialog(window, "Final Score: " + score, "Game Over", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE, null, new Object[]{}, null);					
 					System.exit(0);
 				}
 				for (Pipe p : pipes) {
 					if (p.move() == true)
 						score++;
-					if (count % 500 == 1) {
+					if (
+							score==5 && p.xSpeed==-5 || 
+							score==15 && p.xSpeed==-6|| 
+							score == 35 && p.xSpeed==-7 || 
+							score == 65 && p.xSpeed==-8|| 
+							score == 105 && p.xSpeed==-9|| 
+							score == 155 && p.xSpeed==-10) 
+					{
 						p.accelerate();
 					}
 					if (bird.intersects(p) && ( (bird.y < p.y + 930) || (bird.y + 100 > p.y + 1280) )) {
 						repaint();
 						tmr.stop();
-						JOptionPane.showMessageDialog(window, "Final Score: " + score);
+						JOptionPane.showOptionDialog(window, "Final Score: " + score, "Game Over", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE, null, new Object[]{}, null);					
 						System.exit(0);         
 					}
 				}
-				
-				count++;
 					
 				repaint();
 			}
