@@ -149,7 +149,8 @@ public class Tester extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(image, 0, 0, null);
-		bird.draw(g);
+		boolean flag = (score > 19)? true : false;
+		bird.draw(g, flag);
 		for (Pipe p : pipes)
 			p.draw(g);
 	}
