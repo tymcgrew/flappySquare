@@ -18,7 +18,7 @@ public class Pipe extends Rectangle {
 		y = rnd.nextInt(550) - 900;
 		width = 150;
 		height = 2210;
-		xSpeed = -5;
+		xSpeed = -7;
 		try { 
 			topImage = ImageIO.read(new File("topPipe.png")); 
 			bottomImage = ImageIO.read(new File("bottomPipe.png"));

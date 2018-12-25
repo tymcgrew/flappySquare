@@ -58,12 +58,16 @@ public class Tester extends JPanel {
 					if (p.move() == true)
 						score++;
 					if (
-							score==5 && p.xSpeed==-5 || 
-							score==15 && p.xSpeed==-6|| 
-							score == 35 && p.xSpeed==-7 || 
-							score == 65 && p.xSpeed==-8|| 
-							score == 105 && p.xSpeed==-9|| 
-							score == 155 && p.xSpeed==-10) 
+							score==5 && p.xSpeed==-7 || 
+							score==15 && p.xSpeed==-8 || 
+							score==25 && p.xSpeed==-9 || 
+							score==35 && p.xSpeed==-10 || 
+							score==45 && p.xSpeed==-11 || 
+							score==55 && p.xSpeed==-12 ||
+							score==65 && p.xSpeed==-13 || 
+							score==75 && p.xSpeed==-14 || 
+							score==85 && p.xSpeed==-15 
+							) 
 					{
 						p.accelerate();
 					}
