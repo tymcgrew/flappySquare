@@ -40,6 +40,7 @@ public class Tester extends JPanel {
 		pipes.add(new Pipe(3250));
 		window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		window.setLocation(0,0);
+		window.setUndecorated(true);
 		window.setVisible(true);
 
 		//======================================== Events
@@ -149,8 +150,7 @@ public class Tester extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(image, 0, 0, null);
-		boolean flag = (score > 19)? true : false;
-		bird.draw(g, flag);
+		bird.draw(g, score);
 		for (Pipe p : pipes)
 			p.draw(g);
 	}
