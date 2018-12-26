@@ -25,6 +25,12 @@ public class Tester extends JPanel {
 	FlappySquare bird = null;
 	ArrayList<Pipe> pipes = new ArrayList<>();
 	private BufferedImage image = null;
+	private BufferedImage getReady1 = null;
+	private BufferedImage getReady2 = null;
+	private BufferedImage getReady3 = null;
+	private BufferedImage go = null;
+	
+	long time = System.currentTimeMillis();
 	int score = 0;
 
 	public Tester() throws InterruptedException{
@@ -32,20 +38,37 @@ public class Tester extends JPanel {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.getContentPane().add(this);
 		window.setAlwaysOnTop(true);
-		try { image = ImageIO.read(new File("background.png")); }
+		try { 
+			image = ImageIO.read(new File("background.png")); 
+			getReady1 = ImageIO.read(new File("getReady1.png"));
+			getReady2 = ImageIO.read(new File("getReady2.png"));
+			getReady3 = ImageIO.read(new File("getReady3.png"));
+			go = ImageIO.read(new File("go.png"));
+		}
 		catch (Exception e) {}
 		bird = new FlappySquare();
-		pipes.add(new Pipe(1750));
-		pipes.add(new Pipe(2500));
-		pipes.add(new Pipe(3250));
+		pipes.add(new Pipe(1000));
+		pipes.add(new Pipe(1690));
+		pipes.add(new Pipe(2380));
 		window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		window.setLocation(0,0);
-		window.setUndecorated(true);
 		window.setVisible(true);
 
 		//======================================== Events
-		Thread.sleep(1000);
-		
+
+		repaint();
+		Thread.sleep(500);
+
+		repaint();
+		Thread.sleep(500);
+
+		repaint();
+		Thread.sleep(500);
+
+		repaint();
+		Thread.sleep(500);
+
+
 		tmr = new Timer(15, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -79,7 +102,7 @@ public class Tester extends JPanel {
 						System.exit(0);         
 					}
 				}
-					
+
 				repaint();
 			}
 		});
@@ -153,6 +176,14 @@ public class Tester extends JPanel {
 		bird.draw(g, score);
 		for (Pipe p : pipes)
 			p.draw(g);
+		if (System.currentTimeMillis() - time < 500)
+			g.drawImage(getReady1, 600, 400, null);
+		else if (System.currentTimeMillis() - time < 1000)
+			g.drawImage(getReady2,  600,  400,  null);
+		else if (System.currentTimeMillis() - time < 1500)
+			g.drawImage(getReady3,  600,  400,  null);
+		else if (System.currentTimeMillis() - time < 2000)
+			g.drawImage(go,  600,  400,  null);
 	}
 
 	public static void main(String[] args) {

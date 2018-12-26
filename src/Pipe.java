@@ -29,7 +29,7 @@ public class Pipe extends Rectangle {
 	public boolean move(){
 		x += xSpeed;
 		if (x < -150) {
-			x = 1920;
+			x = 1920 - (-150 - x);
 			y = rnd.nextInt(550) - 900;
 			return true;
 		}
